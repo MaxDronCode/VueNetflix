@@ -1,0 +1,41 @@
+<template>
+    <nav>
+        <a href="#">Index</a>
+        <a href="#">Peliculas</a>
+        <a href="#">Detalle</a>
+        <a href="#">Login</a>
+    </nav>
+</template>
+
+<script>
+    export default {
+        name: 'NavComponent'
+    }
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+
+    nav{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        position: fixed;
+    }
+    a{
+        text-decoration: none;
+        transition: 0.2s ease-in-out;
+        color: antiquewhite;
+        font-family: "Teachers", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: weight;
+        font-style: normal;
+        font-size: 30px;
+        width: 25%;
+    }
+    a:hover{
+        padding: 10px;
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #000000, 0 0 20px #ffffff;
+    }
+    
+</style>
