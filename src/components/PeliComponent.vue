@@ -21,13 +21,33 @@ export default {
 
 <style scoped>
 .peli{
-    color: whitesmoke;
-    width: 300px;
-    height: 400px;
-    /* border: 1px solid whitesmoke; */
+  border: 1px solid black;
+    color: #393459;
+    font-weight: 700;
+    flex: 0 0 auto;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+}
+.peli p{
+  margin: 20px auto 20px auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 80%;
+  transition: 0.2s ease-in-out;
 }
 .peli img{
-    height: 300px;
+    max-width: 200px;
+    height: auto;
+    border-radius: 4px;
+    border-bottom: 1px solid black;
 }
+
+.peli:hover p{
+  background-color: whitesmoke;
+  border-radius: 4px;
+}
+
 
 </style>

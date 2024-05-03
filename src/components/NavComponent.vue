@@ -21,6 +21,7 @@
         display: flex;
         justify-content: space-around;
         position: fixed;
+        background-color: rgb(0, 0, 0,0.5);
     }
     a{
         text-decoration: none;
