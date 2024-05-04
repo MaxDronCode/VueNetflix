@@ -15,22 +15,29 @@
   <div class="trailers">
     <TrailerComponent v-for="(trailer, index) in trailers"
       :key="index"
-      :imgUrl="trailer.imgUrl">
+      :imgUrl="trailer.imgUrl"
+      :tituloTrailer="trailer.tituloTrailer">
     </TrailerComponent>
   </div>
+  <UneteComponent class="unete"/>
+  <FooterComponent class="footer"/>
 </template>
 
 <script>
 import NavComponent from './components/NavComponent.vue'
 import PeliComponent from './components/PeliComponent.vue'
 import TrailerComponent from './components/TrailerComponent.vue'
+import UneteComponent from "./components/UneteComponent.vue"
+import FooterComponent from "./components/FooterComponent.vue"
 
 export default {
   name: 'App',
   components: {
     NavComponent,
     PeliComponent,
-    TrailerComponent
+    TrailerComponent,
+    UneteComponent,
+    FooterComponent
   },
   data() {
     return{
@@ -50,9 +57,13 @@ export default {
         
       ],
       trailers: [
-        {imgUrl: "img/cobraKai.jpg"},
-        {imgUrl: "img/starWarsLaRemesaMala.jpg"},
-        {imgUrl: "img/starWarsVisions.jpg"},
+        {imgUrl: "img/cobraKai.jpg", tituloTrailer: "Cobra Kai"},
+        {imgUrl: "img/starWarsLaRemesaMala.jpg", tituloTrailer: "Star Wars: La Remesa Mala"},
+        {imgUrl: "img/starWarsVisions.jpg", tituloTrailer: "Star Wars: Visions"},
+        {imgUrl: "img/atlas.jpg", tituloTrailer: "Atlas"},
+        {imgUrl: "img/garfield.jpg", tituloTrailer: "Garfield"},
+        {imgUrl: "img/elReinoDelPlanetaDeLosSimios.jpg", tituloTrailer: "El Reino Del Planeta De Los Simios"},
+        {imgUrl: "img/theBoys.jpg", tituloTrailer: "The Boys"},
       ]
     }
   }
