@@ -1,9 +1,10 @@
 <template>
     <nav>
-        <a href="#">Index</a>
-        <a href="#">Peliculas</a>
-        <a href="#">Detalle</a>
-        <a href="#">Login</a>
+        <router-link to="/">Home</router-link>
+        <router-link to="/peliculas">Películas</router-link>
+        <router-link to="/series">Series</router-link>
+        <router-link to="/login">Login</router-link>
+        <router-view/>
     </nav>
 </template>
 
@@ -22,6 +23,7 @@
         justify-content: space-around;
         position: fixed;
         background-color: rgb(0, 0, 0,0.5);
+        z-index: 1000;
     }
     a{
         text-decoration: none;
@@ -33,6 +35,7 @@
         font-style: normal;
         font-size: 30px;
         width: 25%;
+        text-align: center;
     }
     a:hover{
         padding: 10px;

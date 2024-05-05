@@ -3,9 +3,7 @@
         <img :src=imgUrl alt="Descripció Película">
         <p>{{ tituloPeli }}</p>
         <p>{{ puntuacionPeli }}</p>
-
     </div>
-
 </template>
 
 <script>

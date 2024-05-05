@@ -3,7 +3,7 @@
         <div class="div1">
             <h2>Únete Hoy</h2>
             <p>Obtén acceso para mantener tus propias <span>listas personales personalizadas, hacer un seguimiento de lo que has visto</span> y buscar y filtrar <span>qué ver a continuación</span>, independientemente de si está en los cines, en la televisión o disponible en servicios de streaming populares como Disney Plus, Amazon Prime Video, Netflix, fuboTV y Apple TV Plus.</p>
-            <button href="#">Regístrate</button>
+            <router-link to="/login" class="button">Regístrate</router-link>
         </div>
         <div class="div2">
             <ul>
@@ -25,6 +25,8 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+
 *{
     /* border: 1px solid white; */
     background-color: #f9ebd9;
@@ -61,7 +63,8 @@ span{
     color: #273644;
     font-weight: 600;
 }
-button{
+.button{
+    text-decoration: none;
     background-color: #273644;
     color: #f9ebda;
     width: 120px;
@@ -69,6 +72,10 @@ button{
     border-radius: 6px;
     font-size: 16px;
     margin-top: 30px;
+    text-align: center;
+    line-height: 40px;
+    font-family: "Teachers", sans-serif;
+
 }
 .div2{
     width: 50vw;

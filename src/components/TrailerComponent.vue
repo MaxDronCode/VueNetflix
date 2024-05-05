@@ -16,7 +16,7 @@ export default {
     imgUrl: String,
     tituloTrailer: {
       type: String,
-      default: "Texto por defecto"
+      default: "Texto por defecto" // Para pruebas
     }
   },
   data(){
