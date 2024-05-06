@@ -42,10 +42,10 @@ export default {
     border-bottom: 1px solid black;
 }
 
-.peli:hover p{
+/* .peli:hover p{
   background-color: whitesmoke;
   border-radius: 4px;
-}
+} */
 
 
 </style>

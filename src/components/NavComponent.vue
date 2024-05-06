@@ -4,7 +4,6 @@
         <router-link to="/peliculas">Películas</router-link>
         <router-link to="/series">Series</router-link>
         <router-link to="/login">Login</router-link>
-        <router-view/>
     </nav>
 </template>
 
