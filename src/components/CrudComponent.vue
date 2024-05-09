@@ -7,20 +7,20 @@
     <div class="pelis">
         <div v-for="(peli, index) in peliculas" :key="index" class="peli">
             <PeliComponent :Poster="peli.Poster" :Title="peli.Title" :Year="peli.Year" :imdbID="peli.imdbID"/>
-            <button @click="editarPelicula(index)">Editar</button>
-            <button @click="eliminarPelicula(index)">Eliminar</button>
+            <button @click="editarPelicula(index)" class="btn_imp">Editar</button>
+            <button @click="eliminarPelicula(index)" class="btn_imp">Eliminar</button>
         </div>
     </div>
 
     <div class="forms">
 
         <!-- Formulario para añadir una nueva película -->
-        <form @submit.prevent="crearPelicula">
+        <form @submit.prevent="crearPelicula" class="formCrear">
             <h2>Afegir Película</h2>
             <label for="peli_nom">Nom:</label>
-            <input type="text" v-model="nuevaPelicula.Title"><br>
+            <input type="text" v-model="nuevaPelicula.Title">
             <label for="peli_punt">Puntuació:</label>
-            <input type="text" v-model="nuevaPelicula.Year"><br>
+            <input type="text" v-model="nuevaPelicula.Year">
             <label for="peli_img">Poster:</label>
             <input type="file" @change="cargarImagen"><br>
             <input type="submit" value="Crear">
@@ -41,11 +41,13 @@
             </form>
         </div>
     </div>
+    <FooterComponent></FooterComponent>
 </template>
 
 <script>
 import NavComponent from './NavComponent.vue';
 import PeliComponent from './PeliComponent.vue';
+import FooterComponent from './FooterComponent.vue';
 import axios from "axios"
 
 
@@ -53,7 +55,8 @@ export default {
     name: "CrudComponent",
     components: {
         NavComponent,
-        PeliComponent
+        PeliComponent,
+        FooterComponent
     },
     data() {
         return {
@@ -220,5 +223,17 @@ input{
     filter: blur(5px);
     pointer-events: none;
 }
-
+.btn_imp{
+    width: 50%;
+    font-size: 14px;
+}
+.formCrear{
+    color: whitesmoke;
+}
+.formCrear input{
+    margin: 15px;
+}
+.formCrear h2{
+    border-top: 1px solid wheat;
+}
 </style>
