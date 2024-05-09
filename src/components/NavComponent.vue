@@ -3,7 +3,7 @@
         <router-link to="/">Home</router-link>
         <router-link to="/peliculas">Películas</router-link>
         <router-link to="/series">Series</router-link>
-        <router-link to="/login">Login</router-link>
+        <router-link to="/crud">CRUD</router-link>
     </nav>
 </template>
 

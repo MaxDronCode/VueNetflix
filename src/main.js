@@ -5,7 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'       // instalas vu
 import HomeComponent from '@/components/HomeComponent'
 import PeliculasComponent from '@/components/PeliculasComponent'
 import SeriesComponent from '@/components/SeriesComponent'
-import LoginComponent from '@/components/LoginComponent'
+import CrudComponent from '@/components/CrudComponent'
 // Crear el router
 const router = createRouter({
   history: createWebHistory(),
@@ -13,7 +13,7 @@ const router = createRouter({
     { path: '/', component: HomeComponent }, // El componente que se renderizará cuando estemos en "/"
     { path: '/peliculas', component: PeliculasComponent },
     { path: '/series', component: SeriesComponent },
-    { path: '/login', component: LoginComponent},
+    { path: '/crud', component: CrudComponent},
   ]
 });
 
