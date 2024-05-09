@@ -85,4 +85,16 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr;
 
 }
+@media (max-width: 768px){
+    .pelis{
+        grid-template-columns: 1fr 1fr;
+
+    }
+}
+@media (max-width: 480px){
+    .pelis{
+        grid-template-columns: 1fr 1fr;
+
+    }
+}
 </style>

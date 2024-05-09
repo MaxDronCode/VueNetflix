@@ -236,4 +236,17 @@ input{
 .formCrear h2{
     border-top: 1px solid wheat;
 }
+@media (max-width: 768px){
+    .formCrear{
+        display: flex;
+        flex-direction: column;
+    }
+    .pelis{
+        width: 100%vw;
+        grid-template-columns: 1fr 1fr;
+    }
+    .forms{
+        width: 100%vw;
+    }
+}
 </style>
