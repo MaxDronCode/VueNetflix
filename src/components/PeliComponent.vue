@@ -3,6 +3,7 @@
         <img :src=Poster alt="Descripció Película">
         <p>{{ Title }}</p>
         <p>{{ Year }}</p>
+        <slot></slot>
         <router-link :to="{ name: 'Detall', params: { imdbID } }">Detall</router-link>
     </div>
 </template>
