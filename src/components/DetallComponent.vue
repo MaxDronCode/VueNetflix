@@ -45,7 +45,7 @@ export default {
         obtenirDetalls() {
             const apiKey = '2adb59fa';
             axios
-                .get(`http://www.omdbapi.com/?apikey=${apiKey}&i=${this.imdbID}`)
+                .get(`https://www.omdbapi.com/?apikey=${apiKey}&i=${this.imdbID}`)
                 .then(response => {
                     this.pelicula = response.data;
                 })

@@ -67,7 +67,7 @@ export default {
   },
   mounted() {
     axios
-      .get('http://www.omdbapi.com/?apikey=2adb59fa&s=war')
+      .get('https://www.omdbapi.com/?apikey=2adb59fa&s=war')
       .then(response => {
         this.info = response.data;
         if (this.info && this.info.Search) {
