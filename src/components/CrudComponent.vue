@@ -25,21 +25,21 @@
             <input type="file" @change="cargarImagen"><br>
             <input type="submit" value="Crear">
         </form>
-
-        <!-- Formulario para editar una película existente -->
-        <form v-if="editandoPelicula !== null" @submit.prevent="guardarEdicion">
-            <h2>Editar Película</h2>
-            <label for="edit_peli_nom">Nom:</label>
-            <input type="text" v-model="peliculaEditada.Title"><br>
-            <label for="edit_peli_punt">Puntuació:</label>
-            <input type="text" v-model="peliculaEditada.Year"><br>
-            <label for="edit_peli_img">Poster:</label>
-            <input type="file" @change="cargarImagenEditada"><br>
-            <input type="submit" value="Guardar Cambios">
-            <button type="button" @click="cancelarEdicion">Cancelar</button>
-        </form>
-
-        
+    </div>
+    <div v-if="editandoPelicula !== null" class="modal-overlay">
+        <div class="modal-content">
+            <form @submit.prevent="guardarEdicion">
+                <h2>Editar Película</h2>
+                <label for="edit_peli_nom">Nom:</label>
+                <input type="text" v-model="peliculaEditada.Title"><br>
+                <label for="edit_peli_punt">Puntuació:</label>
+                <input type="text" v-model="peliculaEditada.Year"><br>
+                <label for="edit_peli_img">Poster:</label>
+                <input type="file" @change="cargarImagenEditada"><br>
+                <input type="submit" value="Guardar Cambios">
+                <button type="button" @click="cancelarEdicion">Cancelar</button>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -186,7 +186,7 @@ h1 {
 }
 
 form {
-    color: whitesmoke;
+    color: black;
     margin: 20px;
 }
 .forms{
@@ -196,6 +196,29 @@ input{
     margin: 5px;
     font-size: 16px;
 
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+}
+.blur {
+    filter: blur(5px);
+    pointer-events: none;
 }
 
 </style>
