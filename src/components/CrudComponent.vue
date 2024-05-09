@@ -6,14 +6,14 @@
 
     <div class="pelis">
         <div v-for="(peli, index) in peliculas" :key="index" class="peli">
-            <PeliComponent :Poster="peli.Poster" :Title="peli.Title" :Year="peli.Year" :imdbID="peli.imdbID"/>
-            <button @click="editarPelicula(index)" class="btn_imp">Editar</button>
-            <button @click="eliminarPelicula(index)" class="btn_imp">Eliminar</button>
+            <PeliComponent :Poster="peli.Poster" :Title="peli.Title" :Year="peli.Year" :imdbID="peli.imdbID">
+                <button @click="editarPelicula(index)" class="btn_imp">Editar</button>
+                <button @click="eliminarPelicula(index)" class="btn_imp">Eliminar</button>
+            </PeliComponent>
         </div>
     </div>
 
     <div class="forms">
-
         <!-- Formulario para añadir una nueva película -->
         <form @submit.prevent="crearPelicula" class="formCrear">
             <h2>Afegir Película</h2>
@@ -26,6 +26,7 @@
             <input type="submit" value="Crear">
         </form>
     </div>
+
     <div v-if="editandoPelicula !== null" class="modal-overlay">
         <div class="modal-content">
             <form @submit.prevent="guardarEdicion">
@@ -41,6 +42,7 @@
             </form>
         </div>
     </div>
+
     <FooterComponent></FooterComponent>
 </template>
 
@@ -48,8 +50,7 @@
 import NavComponent from './NavComponent.vue';
 import PeliComponent from './PeliComponent.vue';
 import FooterComponent from './FooterComponent.vue';
-import axios from "axios"
-
+import axios from "axios";
 
 export default {
     name: "CrudComponent",
@@ -82,18 +83,18 @@ export default {
     methods: {
         obtenirDetalls() {
             axios
-        .get('http://www.omdbapi.com/?apikey=2adb59fa&s=war') 
-            .then(response => {
-                this.info = response.data;
-                if (this.info && this.info.Search) {
-                    this.peliculas = this.info.Search.map(peli => ({
-                        imdbID: peli.imdbID,
-                        Poster: peli.Poster,
-                        Title: peli.Title,
-                        Year: peli.Year,
-                    }));
-                }
-            });
+                .get('http://www.omdbapi.com/?apikey=2adb59fa&s=war')
+                .then(response => {
+                    this.info = response.data;
+                    if (this.info && this.info.Search) {
+                        this.peliculas = this.info.Search.map(peli => ({
+                            imdbID: peli.imdbID,
+                            Poster: peli.Poster,
+                            Title: peli.Title,
+                            Year: peli.Year
+                        }));
+                    }
+                });
         },
         crearPelicula() {
             if (this.nuevaPelicula.Title && this.nuevaPelicula.Year && this.nuevaPelicula.Poster) {
@@ -149,8 +150,8 @@ export default {
             }
         },
         eliminarPelicula(index) {
-            if (confirm("Estas segur? S'eliminará la película de finitivament.")){
-                this.peliculas.splice(index,1)
+            if (confirm("¿Estás seguro? Se eliminará la película definitivamente.")) {
+                this.peliculas.splice(index, 1);
             }
         }
     }
@@ -162,6 +163,9 @@ export default {
 
 * {
     font-family: "Teachers", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -172,34 +176,49 @@ h1 {
     color: transparent;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     text-align: center;
+    margin: 20px 0;
 }
 
 .peli {
-    color: whitesmoke;
-    width: 100%;
-    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
+    gap: 10px;
+    background-color: #2d3e4f;
+    border-radius: 10px;
+    color: whitesmoke;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .pelis {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px;
+    width: 100%;
 }
 
 form {
     color: black;
     margin: 20px;
 }
-.forms{
+
+.forms {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 20px;
 }
-input{
+
+input {
     margin: 5px;
     font-size: 16px;
-
+    padding: 5px;
+    width: 100%;
 }
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -212,41 +231,88 @@ input{
     align-items: center;
     z-index: 9999;
 }
+
 .modal-content {
     background: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     z-index: 10000;
+    width: 90%;
+    max-width: 500px;
 }
+
 .blur {
     filter: blur(5px);
     pointer-events: none;
 }
-.btn_imp{
-    width: 50%;
+
+.btn_imp {
+    width: 80%;
     font-size: 14px;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    background-color: #ffc67c;
+    border: none;
+    border-radius: 6px;
+    color: #2d3e4f;
+    transition: background-color 0.3s ease;
 }
-.formCrear{
+
+.btn_imp:hover {
+    background-color: #e6b46b;
+}
+
+.formCrear {
     color: whitesmoke;
+    background-color: #273644;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
 }
-.formCrear input{
-    margin: 15px;
+
+.formCrear input {
+    margin: 10px 0;
+    font-size: 16px;
+    width: 100%;
 }
-.formCrear h2{
+
+.formCrear h2 {
+    margin-top: 0;
     border-top: 1px solid wheat;
+    padding-top: 10px;
 }
-@media (max-width: 768px){
-    .formCrear{
-        display: flex;
-        flex-direction: column;
+
+@media (max-width: 768px) {
+    .pelis {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin: 10px;
     }
-    .pelis{
-        width: 100%vw;
-        grid-template-columns: 1fr 1fr;
+
+    .forms {
+        width: 100%;
+        margin: 10px;
     }
-    .forms{
-        width: 100%vw;
+
+    .formCrear {
+        width: 95%;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .btn_imp {
+        font-size: 12px;
+        padding: 8px;
     }
 }
 </style>

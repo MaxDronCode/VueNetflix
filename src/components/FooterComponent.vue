@@ -136,10 +136,9 @@ button:hover {
         text-align: left;
     }
 
-    /* img {
-        width: 120px;
-        height: 120px;
-    } */
+    img {
+        margin: auto;
+    }
 
     button {
         width: 200px;
@@ -148,6 +147,8 @@ button:hover {
     .div-general {
         /* gap: 30px; */
         max-width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
     .div2 p {
@@ -156,6 +157,7 @@ button:hover {
 
     .div2 a {
         font-size: 14px;
+        margin: 0;
     }
 }
 
