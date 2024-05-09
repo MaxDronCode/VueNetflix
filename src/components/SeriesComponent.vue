@@ -5,9 +5,10 @@
         <PeliComponent class="peli"
             v-for="(peli,index) in peliculas"
             :key="index"
-            :imgUrl="peli.Poster"
-            :tituloPeli="peli.Title"
-            :puntuacionPeli="peli.Year">
+            :Poster="peli.Poster"
+            :Title="peli.Title"
+            :Year="peli.Year"
+            :imdbID="peli.imdbID">
         </PeliComponent>
     </div>
     <FooterComponent/>

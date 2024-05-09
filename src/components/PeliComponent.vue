@@ -1,8 +1,9 @@
 <template>
     <div class="peli">
-        <img :src=imgUrl alt="Descripció Película">
-        <p>{{ tituloPeli }}</p>
-        <p>{{ puntuacionPeli }}</p>
+        <img :src=Poster alt="Descripció Película">
+        <p>{{ Title }}</p>
+        <p>{{ Year }}</p>
+        <router-link :to="{ name: 'Detall', params: { imdbID } }">Detall</router-link>
     </div>
 </template>
 
@@ -10,9 +11,10 @@
 export default {
   name: 'PeliComponent',
   props: {
-    imgUrl: String,
-    tituloPeli: String,
-    puntuacionPeli: String
+    Poster: String,
+    Title: String,
+    Year: String,
+    imdbID: String
   }
 }
 </script>
@@ -26,9 +28,11 @@ export default {
     height: 100%;
     overflow: hidden;
     border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;  }
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;  
+    position: relative;  
+  }
 .peli p{
-  margin: 20px auto 20px auto;
+  margin: 10px auto 10px auto;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -40,12 +44,26 @@ export default {
     height: auto;
     border-radius: 4px;
     border-bottom: 1px solid black;
+    margin: 10px;
 }
 
 /* .peli:hover p{
   background-color: whitesmoke;
   border-radius: 4px;
 } */
+a{
+  color: #faebd8;
+  margin: 10px;
+  background-color: #393459;
+  border-radius: 4px;
+  padding: 2px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+
+
+}
 
 
 </style>

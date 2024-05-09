@@ -6,6 +6,7 @@ import HomeComponent from '@/components/HomeComponent'
 import PeliculasComponent from '@/components/PeliculasComponent'
 import SeriesComponent from '@/components/SeriesComponent'
 import CrudComponent from '@/components/CrudComponent'
+import DetallComponent from '@/components/DetallComponent'
 // Crear el router
 const router = createRouter({
   history: createWebHistory(),
@@ -14,6 +15,7 @@ const router = createRouter({
     { path: '/peliculas', component: PeliculasComponent },
     { path: '/series', component: SeriesComponent },
     { path: '/crud', component: CrudComponent},
+    { path: '/detall/:imdbID', name: 'Detall', component: DetallComponent, props: true }
   ]
 });
 

@@ -6,7 +6,7 @@
 
     <div class="pelis">
         <div v-for="(peli, index) in peliculas" :key="index" class="peli">
-            <PeliComponent :imgUrl="peli.imgUrl" :tituloPeli="peli.tituloPeli" :puntuacionPeli="peli.puntuacionPeli" />
+            <PeliComponent :Poster="peli.Poster" :Title="peli.Title" :Year="peli.Year" :imdbID="peli.imdbID"/>
             <button @click="editarPelicula(index)">Editar</button>
             <button @click="eliminarPelicula(index)">Eliminar</button>
         </div>
@@ -18,9 +18,9 @@
         <form @submit.prevent="crearPelicula">
             <h2>Afegir Película</h2>
             <label for="peli_nom">Nom:</label>
-            <input type="text" v-model="nuevaPelicula.tituloPeli"><br>
+            <input type="text" v-model="nuevaPelicula.Title"><br>
             <label for="peli_punt">Puntuació:</label>
-            <input type="text" v-model="nuevaPelicula.puntuacionPeli"><br>
+            <input type="text" v-model="nuevaPelicula.Year"><br>
             <label for="peli_img">Poster:</label>
             <input type="file" @change="cargarImagen"><br>
             <input type="submit" value="Crear">
@@ -30,9 +30,9 @@
         <form v-if="editandoPelicula !== null" @submit.prevent="guardarEdicion">
             <h2>Editar Película</h2>
             <label for="edit_peli_nom">Nom:</label>
-            <input type="text" v-model="peliculaEditada.tituloPeli"><br>
+            <input type="text" v-model="peliculaEditada.Title"><br>
             <label for="edit_peli_punt">Puntuació:</label>
-            <input type="text" v-model="peliculaEditada.puntuacionPeli"><br>
+            <input type="text" v-model="peliculaEditada.Year"><br>
             <label for="edit_peli_img">Poster:</label>
             <input type="file" @change="cargarImagenEditada"><br>
             <input type="submit" value="Guardar Cambios">
@@ -46,6 +46,8 @@
 <script>
 import NavComponent from './NavComponent.vue';
 import PeliComponent from './PeliComponent.vue';
+import axios from "axios"
+
 
 export default {
     name: "CrudComponent",
@@ -55,31 +57,49 @@ export default {
     },
     data() {
         return {
-            peliculas: [
-                { imgUrl: "img/theMiracleClub.webp", tituloPeli: "The Miracle Club", puntuacionPeli: "8.5" },
-                { imgUrl: "img/RebelMoon.jpg", tituloPeli: "Rebel Moon", puntuacionPeli: "8.4" }
-            ],
+            peliculas: [],
             nuevaPelicula: {
-                tituloPeli: '',
-                puntuacionPeli: '',
-                imgUrl: ''
+                Title: '',
+                Year: '',
+                Poster: '',
+                imdbID: 'tt5186860'
             },
             editandoPelicula: null,
             peliculaEditada: {
-                tituloPeli: '',
-                puntuacionPeli: '',
-                imgUrl: ''
+                Title: '',
+                Year: '',
+                Poster: '',
+                imdbID: ''
             }
         }
     },
+    mounted() {
+        this.obtenirDetalls();
+    },
     methods: {
+        obtenirDetalls() {
+            axios
+        .get('http://www.omdbapi.com/?apikey=2adb59fa&s=war') 
+            .then(response => {
+                this.info = response.data;
+                if (this.info && this.info.Search) {
+                    this.peliculas = this.info.Search.map(peli => ({
+                        imdbID: peli.imdbID,
+                        Poster: peli.Poster,
+                        Title: peli.Title,
+                        Year: peli.Year,
+                    }));
+                }
+            });
+        },
         crearPelicula() {
-            if (this.nuevaPelicula.tituloPeli && this.nuevaPelicula.puntuacionPeli && this.nuevaPelicula.imgUrl) {
+            if (this.nuevaPelicula.Title && this.nuevaPelicula.Year && this.nuevaPelicula.Poster) {
                 this.peliculas.push({ ...this.nuevaPelicula });
                 this.nuevaPelicula = {
-                    tituloPeli: '',
-                    puntuacionPeli: '',
-                    imgUrl: ''
+                    Title: '',
+                    Year: '',
+                    Poster: '',
+                    imdbID: 'tt5186860'
                 };
             } else {
                 alert('Por favor, rellene todos los campos');
@@ -90,7 +110,7 @@ export default {
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    this.nuevaPelicula.imgUrl = e.target.result;
+                    this.nuevaPelicula.Poster = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
@@ -100,7 +120,7 @@ export default {
             this.peliculaEditada = { ...this.peliculas[index] };
         },
         guardarEdicion() {
-            if (this.peliculaEditada.tituloPeli && this.peliculaEditada.puntuacionPeli && this.peliculaEditada.imgUrl) {
+            if (this.peliculaEditada.Title && this.peliculaEditada.Year && this.peliculaEditada.Poster) {
                 this.peliculas[this.editandoPelicula] = { ...this.peliculaEditada };
                 this.cancelarEdicion();
             } else {
@@ -110,9 +130,9 @@ export default {
         cancelarEdicion() {
             this.editandoPelicula = null;
             this.peliculaEditada = {
-                tituloPeli: '',
-                puntuacionPeli: '',
-                imgUrl: ''
+                Title: '',
+                Year: '',
+                Poster: ''
             };
         },
         cargarImagenEditada(event) {
@@ -120,7 +140,7 @@ export default {
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    this.peliculaEditada.imgUrl = e.target.result;
+                    this.peliculaEditada.Poster = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
